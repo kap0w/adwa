@@ -1,0 +1,23 @@
+---
+- name: Deploy Three Tier App Environment
+  hosts: apps,appdbs,frontends
+
+  tasks:
+  - name: Load Variables
+    include_vars: vars/vars.yml
+
+  - name: Perform Common Configuration Tasks
+    include: tasks/config.yml
+
+  - name: Install and Configure HAProxy on Load Balancers
+    hosts: frontends
+    include: tasks/haproxy.yml
+
+  - name: Install and Configure Application Servers
+    hosts: apps
+    include: tasks/apps.yml
+
+  - name: Install and Configure Database Servers
+    hosts: appdbs
+    include: tasks/database.yml
+...

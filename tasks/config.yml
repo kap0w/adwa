@@ -1,0 +1,7 @@
+---
+- name: Configure Open Three Tier YUM Repo
+  template:
+    src: open_three-tier-app.repo.j2
+    dest: /etc/yum.repos.d/open_three-tier-app.repo
+    mode: 0644
+...
